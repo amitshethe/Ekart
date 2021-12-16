@@ -1,7 +1,16 @@
 <%= form_for(@product) do |f| %>
+ <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <p>
     <%= f.label :name %><br>
-    <%= f.text_field :name, required: true, autofocus: true, placeholder: "Enter product name" %>
+    <%= f.text_field :name, autofocus: true, placeholder: "Enter product name" %>
   </p>
   <p>
     <%= f.label :price %><br>
