@@ -1,6 +1,5 @@
 <%= form_for(@product) do |f| %>
-
-  <%= render "errorshow"%>
+  <%= render "errors"%>
   <p>
     <%= f.label :name %><br>
     <%= f.text_field :name, autofocus: true, placeholder: "Enter product name" %>
