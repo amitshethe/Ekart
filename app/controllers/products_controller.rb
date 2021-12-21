@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :find_Product_ID, only: %i[ edit update destroy]
-  before_action :build_Product, only: %i[new create]
+  before_action :find_product, only: %i[ edit update destroy]
+  before_action :build_product, only: %i[new create]
 
   def index
     @products = Product.all
@@ -33,11 +33,11 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:name, :price)
   end
 
-  def find_Product_ID
+  def find_product
     @product = Product.find(params[:id])
   end
 
-  def build_Product
+  def build_product
     @product = Product.new
   end
 end
