@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 class ProductsController < ApplicationController
-  before_action :find_product, only: %i[edit update destroy]
+  before_action :find_product, only: %i[ edit update destroy]
   before_action :build_product, only: %i[new create]
 
   def index
@@ -31,7 +29,6 @@ class ProductsController < ApplicationController
   end
 
   private
-
   def product_params
     params.require(:product).permit(:name, :price)
   end
