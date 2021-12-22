@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -8,14 +10,14 @@
 
 # PRODUCT
 Product.destroy_all
-product1 = Product.create({:name=>"shirt", :price => 1000})
-product2 = Product.create({:name=>"pant", :price => 3000})
-product3 = Product.create({:name=>"shorts", :price => 550})
-product4 = Product.create({:name=>"jeans", :price => 1000})
-product5 = Product.create({:name=>"tshirt", :price => 320})
+product1 = Product.create({ name: 'shirt', price: 1000 })
+product2 = Product.create({ name: 'pant', price: 3000 })
+product3 = Product.create({ name: 'shorts', price: 550 })
+product4 = Product.create({ name: 'jeans', price: 1000 })
+product5 = Product.create({ name: 'tshirt', price: 320 })
 
 puts "Total number of products: #{Product.all.count}"
-puts "Product names: #{Product.all.pluck("name")}"
+puts "Product names: #{Product.all.pluck('name')}"
 puts "Product1: #{product1.name} price: #{product1.price.round(2)}"
 puts "Product2: #{product2.name} price: #{product2.price.round(2)}"
 puts "Product3: #{product3.name} price: #{product3.price.round(2)}"
