@@ -3,20 +3,6 @@
 class LineItemsController < ApplicationController
   before_action :find_item, only: %i[destroy add_quantity reduce_quantity]
 
-  def update_line_item_details 
-    chosen_product = Product.find(params[:product_id])
-    if @current_cart.products.include?(chosen_product)
-      @line_item = @current_cart.line_items.find_by(product_id: chosen_product)
-      @line_item.quantity += 1
-    else
-      @line_item = LineItem.new
-      @line_item.cart = @current_cart
-      @line_item.product = chosen_product
-      @line_item.quantity = 1
-    end
-    @line_item
-  end
-
   def create
     line_item = update_line_item_details 
     if line_item.save
@@ -63,5 +49,19 @@ class LineItemsController < ApplicationController
 
   def find_item
     @line_item = LineItem.find(params[:id])
+  end
+
+  def update_line_item_details 
+    chosen_product = Product.find(params[:product_id])
+    if @current_cart.products.include?(chosen_product)
+      @line_item = @current_cart.line_items.find_by(product_id: chosen_product)
+      @line_item.quantity += 1
+    else
+      @line_item = LineItem.new
+      @line_item.cart = @current_cart
+      @line_item.product = chosen_product
+      @line_item.quantity = 1
+    end
+    @line_item
   end
 end
