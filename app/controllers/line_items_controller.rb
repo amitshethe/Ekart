@@ -15,10 +15,9 @@ class LineItemsController < ApplicationController
       @line_item.product = chosen_product
       @line_item.quantity = 1
     end
-    begin
-      @line_item.save!
+    if @line_item.save
       redirect_to cart_path(current_cart)
-    rescue Exception => e
+    else
       redirect_to request.referrer, alert: e.message
     end
   end
@@ -31,7 +30,7 @@ class LineItemsController < ApplicationController
   def add_quantity
     @line_item.quantity ||= 0
     @line_item.quantity += 1
-    if @line_item.update_attribute(:quantity, @line_item.quantity)
+    if @line_item.update(:quantity => @line_item.quantity)
       redirect_to cart_path(@current_cart)
     else
       redirect_to request.referrer, alert: "Quantity did not add"
@@ -40,7 +39,7 @@ class LineItemsController < ApplicationController
 
   def reduce_quantity
     @line_item.quantity -= 1 if @line_item.quantity > 1
-    if @line_item.update_attribute(:quantity, @line_item.quantity)
+    if @line_item.update(:quantity => @line_item.quantity)
       redirect_to cart_path(@current_cart)
     else
       redirect_to request.referrer, alert: "Quantity did not reduced"
