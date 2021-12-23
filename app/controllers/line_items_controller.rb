@@ -18,7 +18,7 @@ class LineItemsController < ApplicationController
     if @line_item.save
       redirect_to cart_path(current_cart)
     else
-      redirect_to request.referrer, alert: e.message
+      redirect_to request.referrer, alert: "Please try again"
     end
   end
 
